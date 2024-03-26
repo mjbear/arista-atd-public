@@ -39,6 +39,7 @@ RUN wget --quiet https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/inst
     # redirect to &>/dev/null is required to silence `agent pid XXXX` message from ssh-agent
     && echo 'eval `ssh-agent -s` &>/dev/null' >> $HOME/.zshrc \
     && echo 'export TERM=xterm' >>  $HOME/.zshrc
+    && echo "export LABPASSPHRASE=`awk '/password:/{print $2}' /home/coder/.config/code-server/config.yaml`" >> $HOME/.zshrc
 
 RUN sudo usermod --shell /bin/zsh coder
 
